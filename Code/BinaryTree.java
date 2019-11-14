@@ -95,9 +95,21 @@ public class BinaryTree <E> {
      the number of elements in the tree with the given root
          */
     public int size() {
-      return 0; // REMOVE THIS LINE WHEN YOU ARE DONE
-      // TO BE COMPLETED BY THE STUDENT
+    	return size (root);
    }
+    
+    private int size(Node <E> aNode) {
+    	int count = 0;
+    	if (aNode == null) return 0;
+    	if (aNode.left != null) {
+    		count = count + size(aNode.left);
+    	}
+    	count++;
+    	if (aNode.right != null) {
+    		count = count + size(aNode.right);
+    	}
+    	return count;
+    }
 
    /**
 	 Compute the height of a binary tree
@@ -110,8 +122,28 @@ public class BinaryTree <E> {
 	        */
 
    public int height() {
-	   return 0; // REMOVE THIS LINE WHEN YOU ARE DONE
+	   if (root == null) return -1;
+	   return height(root); // REMOVE THIS LINE WHEN YOU ARE DONE
 	   // TO BE COMPLETED BY THE STUDENT
+   }
+   
+   private int height (Node <E> aNode) {
+	   int maxHeight = 0;
+	   if (aNode.left == null && aNode.right == null) {
+		   maxHeight = 0;
+		   return maxHeight;
+	   }
+	   else{
+		   int heightLeft = 0;
+		   int heightRight = 0;
+		   if (aNode.left != null) 
+			   heightLeft = 1 + height (aNode.left);
+		   if (aNode.right != null) 
+			   heightRight = 1 + height (aNode.right);
+		   if(heightLeft >= heightRight) return maxHeight + heightLeft;
+		   else return maxHeight + heightRight;
+	   }
+	   
    }
 
    public Iterator <E> iterator() {
@@ -276,4 +308,4 @@ public class BinaryTree <E> {
       }
    }
 }
-
+// this line is to ensure this is the latest version of the code: 11/14/19 3:07 PM
